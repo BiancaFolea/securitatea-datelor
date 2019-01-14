@@ -1,0 +1,81 @@
+#ifndef POLYBIUS_H
+#define POLYBIUS_H
+#include <string>
+#include <iostream>
+#include <cctype>
+
+using namespace std;
+
+typedef char square[6][6];
+
+char Uppercase(char c) {
+	putchar (toupper (c));	
+	if (c=='J') {
+		c = 'I';
+	}	
+	return c;
+} //done
+
+void GetCoordinates(square s,
+		     char c,
+		     int& Digit1,
+		     int& Digit2, 
+			 int r, 
+			 int co) {
+	for (int r=0; r<6; r++) {
+		for (int co=0; co<6; co++) {
+			if (c == s[r][co]) {
+				Digit1=r;
+				Digit2=co;
+			}
+		}
+	}	
+} //done
+
+char GetCharacter(square s,
+		  int digit1,
+		  int digit2) {
+	return s[digit1][digit2];
+	
+} //done
+
+bool InSquare(square s, char c, int r, int co) {
+	for (int r=1; r<6; r++) {
+		for (int co=1; co<6; co++) {
+			if (c == s[r][co]) {
+				return true;
+			}
+		}
+	}
+	
+	return false;
+
+}//done
+
+void FillSquare(square s,
+		string keyword, int r, int co) {
+	cin >> keyword;
+	keyword.erase(remove_if(keyword.begin(), keyword.end(), isspace	(), keyword.end());
+	for (int i=0; i<keyword.length(); i++) {
+		keyword[i]=Uppercase(keyword[i]);	
+	}	
+	int i=0; 	
+	for (int r=1; r<6; r++) {
+		for (int co=1; co<6; co++) {
+			while (InSquare(square s, keyword[i])) {
+				i++;
+			}
+				s[r][co]=keyword[i];
+			}
+		}
+	}
+
+
+
+
+
+void Put(square s, int r, int co) {
+	cout << s[r][co];
+}
+   
+#endif 
